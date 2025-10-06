@@ -1,0 +1,28 @@
+.movie-card {
+    width: 100px; /* Ajustez la largeur selon vos besoins */
+    margin: 10px;
+    position: relative; /* Nécessaire pour le positionnement absolu des enfants */
+    display: flex;
+    flex-direction: column;
+}
+
+.movie-poster {
+    width: 100%;
+    height: 100%;
+    border-radius: 5%;
+}
+
+.movie-rating {
+    background-color: #fecc00;
+    color: black;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 10px; /* Ajustez la distance du haut */
+    right: 10px; /* Ajustez la distance de la droite */
+    font-weight: bold;
+}

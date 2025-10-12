@@ -13,16 +13,30 @@
 }
 
 .movie-rating {
-    background-color: #fecc00;
-    color: black;
+    background-color: #2A7B9B;
+    color: white;
     border-radius: 50%;
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     display: flex;
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: 10px; /* Ajustez la distance du haut */
-    right: 10px; /* Ajustez la distance de la droite */
+    bottom: -15px; /* Ajustez la distance du bas */
+    left: 5px; /* Ajustez la distance de la gauche */
+    font-weight: 300;
+    font-size: 12px;
+    border: solid 1.5px #2A7B9B;
+}
+
+.movie-title {
+    font-size: 13px;
     font-weight: bold;
+    padding-top: 1rem;
+}
+
+.movie-date {
+    font-size: 12px;
+    color: gray;
+    margin-top: 0.2rem;
 }

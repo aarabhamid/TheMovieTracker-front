@@ -4,6 +4,21 @@
     flex-flow: wrap;
     gap : 1rem; 
     justify-content: center;
-  
+}
+
+.section-slider {
+    padding: 2rem 1rem;
+}
+
+.title-and-arrows {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.arrows {
+    display: flex;
+    gap: 1rem;
 }
 

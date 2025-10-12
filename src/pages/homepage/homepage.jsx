@@ -118,7 +118,9 @@ function SliderComponent() {
           <GrPrevious onClick={() => personSliderRef.current.slickPrev()} />
           <GrNext onClick={() => personSliderRef.current.slickNext()} />
         </div>
+
       </div>
+      
       <div style={{ padding: "0 50px" }}>
         <Slider ref={personSliderRef} {...settings}>
           {person.map((person) => (

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import instanceAxios from "../../utils/axios";
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import PersonCard from "../../components/personCard/personcard";
 import 'react-circular-progressbar/dist/styles.css';
 import "./moviepage.css";
 
@@ -122,23 +123,19 @@ function MoviePage() {
       </div>
 
       <div className="casting-slider">
-        <h2>Casting</h2>
-        <div className="casting-list">
-          {movie.credits.cast.map(cast => (
-            <div key={cast.id} className="casting-item">
-              <img
-                className="casting-image"
-                src={`https://image.tmdb.org/t/p/original/${cast.profile_path}`}
-                alt={cast.name}
-              />
-              <div className="casting-info">
-                <h3>{cast.name}</h3>
-                <p>{cast.character}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+  <h2>Casting</h2>
+  <div className="casting-list">
+    {movie.credits.cast.slice(0, 10).map((cast) => (
+      <PersonCard
+        key={cast.id}
+        person={cast}
+        personName={cast.name}
+        character={cast.character} // Passe le nom du personnage
+      />
+    ))}
+  </div>
+</div>
+
 
       {isModalOpen && (
         <div className="modal-overlay" onClick={closeModal}>

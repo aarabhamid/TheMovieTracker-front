@@ -54,6 +54,7 @@ function MovieCard({ movie }) {
                         />
                     </div>
                 </div>
+                <span className="separate-line"></span>
                 <h3 className="movie-title">{movieTitle}</h3>
                 <p className="movie-date">{movieDate}</p>
             </Link>

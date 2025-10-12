@@ -1,5 +1,6 @@
 import React from "react";
 import "./movieCard.css";
+import { Link } from "react-router-dom";
 
 function MovieCard({ movie }) {
     // Formater la note avec un seul chiffre après la virgule
@@ -17,7 +18,8 @@ function MovieCard({ movie }) {
 
     return (
         <div className="movie-card">
-            <div style={{ position: 'relative' }}>
+            <Link to={movie.title ? `/movies/${movie.id}` : `/tv/${movie.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                <div style={{ position: 'relative' }}>
                 <img
                     src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
                     alt={movie.title || movie.original_name}
@@ -28,6 +30,7 @@ function MovieCard({ movie }) {
                 </span>
             </div>
             <h3 className="movie-title">{movieTitle}</h3>
+            </Link>
         </div>
     );
 }

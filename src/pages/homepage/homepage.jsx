@@ -5,12 +5,15 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-function Homepage() {
+function SliderComponent () {
   const [movies, setMovies] = useState([]);
+  const [tvShows, setTvShows] = useState([]);
 
   const fetchData = async () => {
     try {
       const response = await instanceAxios.get("/movies");
+      const tvResponse = await instanceAxios.get("/tv");
+      setTvShows(tvResponse.data.results);
       setMovies(response.data.results);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -25,7 +28,7 @@ function Homepage() {
     dots: false, // Désactive les points en bas
     infinite: true,
     speed: 500,
-    slidesToShow: 5,
+    slidesToShow: 10,
     slidesToScroll: 1,
     arrows: true, // Active les flèches
     nextArrow: <SampleNextArrow />, // Composant personnalisé pour la flèche suivante
@@ -34,7 +37,7 @@ function Homepage() {
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 6,
           slidesToScroll: 3,
           infinite: true,
         }
@@ -50,7 +53,7 @@ function Homepage() {
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 2,
           slidesToScroll: 1
         }
       }
@@ -59,12 +62,22 @@ function Homepage() {
 
   return (
     <div>
-      <h1>Welcome to the Homepage</h1>
+      <h2>Les films de la semaine</h2>
       <div style={{ padding: '0 50px' }}>
         <Slider {...settings}>
           {movies.map((movie) => (
             <div key={movie.id}>
               <MovieCard movie={movie} />
+            </div>
+          ))}
+        </Slider>
+      </div>
+      <h2>Les séries de la semaine</h2>
+      <div style={{ padding: '0 50px' }}>
+        <Slider {...settings}>
+          {tvShows.map((show) => (
+            <div key={show.id}>
+              <MovieCard movie={show} />
             </div>
           ))}
         </Slider>
@@ -79,7 +92,7 @@ function SampleNextArrow(props) {
   return (
     <div
       className={className}
-      style={{ ...style, display: "block", background: "black", borderRadius: "50%" }}
+      style={{ ...style, display: "block", alignItems: "center", background: "black", borderRadius: "50%" }}
       onClick={onClick}
     />
   );
@@ -97,4 +110,4 @@ function SamplePrevArrow(props) {
   );
 }
 
-export default Homepage;
+export default SliderComponent;

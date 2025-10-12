@@ -1,0 +1,99 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+background: linear-gradient(90deg,rgba(42, 123, 155, 1) 0%, rgba(91, 207, 207, 1) 99%);
+    color: white;
+    position: relative;
+    z-index: 1000;
+    padding: 1rem 2rem;
+}
+
+.logo-container {
+    width: auto;
+    z-index: 1;
+}
+
+.logo-container h2 {
+    font-size: small;
+}
+
+.logo-header {
+    height: 40px;
+    width: 90px;
+}
+/* Le reste de ton CSS ... */
+
+.nav-list {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Arial', sans-serif;
+}
+
+.nav-item {
+    position: relative;
+    cursor: pointer;
+}
+
+.nav-item h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.dropdown {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    border: rgb(248, 245, 245) 1px solid;
+    border-radius: 0.5rem;
+    padding: 0;
+    margin: 0.5rem;
+    list-style: none;
+    width: 200px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    z-index: 100;
+}
+
+.dropdown li {
+    padding: 0.5rem 1rem;
+    font-size: 14px;
+    font-weight: 200;
+    text-align: start;
+}
+
+.dropdown li a {
+    color: black;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown li:hover {
+    background: linear-gradient(90deg,rgba(42, 123, 155, 1) 0%, rgba(91, 207, 207, 1) 99%);
+   border-radius: 0.5rem;
+}
+
+/* Affichage du dropdown au survol */
+.nav-item:hover .dropdown {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Style des liens dans le menu principal */
+.header a {
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+}

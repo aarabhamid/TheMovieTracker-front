@@ -1,56 +1,167 @@
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import instanceAxios from "../../utils/axios";
-
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 import "./moviepage.css";
 
 function MoviePage() {
-    const { id } = useParams();
-    const [movie, setMovie] = useState(null);
+  const { id } = useParams();
+  const [movie, setMovie] = useState(null);
+  const [movieVideo, setMovieVideo] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-    useEffect(() => {
-        const fetchMovie = async () => {
-            try {
-                const response = await instanceAxios.get(`/movies/${id}`);
-                setMovie(response.data);
-            } catch (error) {
-                console.error("Error fetching movie:", error);
-            }
-        };
+  useEffect(() => {
+    const fetchMovie = async () => {
+      try {
+        const response = await instanceAxios.get(`/movies/${id}`);
+        const videoResponse = await instanceAxios.get(`/movies/${id}/videos`);
+        setMovie(response.data);
+        if (videoResponse.data.length > 0) {
+          setMovieVideo(videoResponse.data[0]);
+        }
+      } catch (error) {
+        console.error("Error fetching movie:", error);
+      }
+    };
+    fetchMovie();
+  }, [id]);
 
-        fetchMovie();
-    }, [id]);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
-    if (!movie) {
-        return <div>Loading...</div>;
-    }
+  if (!movie || !movieVideo) {
+    return <div>Loading...</div>;
+  }
 
-   return (
-  <div className="movie-page">
-    <div className="movie-backdrop-container">
-      <img
-        className="movie-backdrop"
-        src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
-        alt={movie.title}
-      />
-      <div className="movie-content">
-        <div className="movie-poster-container">
-          <img
-            className="movie-poster-image"
-            src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
-            alt={movie.title}
-          />
-        </div>
-        <div className="movie-details">
-          <h1>{movie.title}</h1>
-          <p>{movie.overview}</p>
-          <h2>Similar Movies</h2>
+  const formattedRating = movie.vote_average.toFixed(1) * 10;
+  const rating = parseFloat(formattedRating);
+
+  let strokeColor;
+  if (rating < 50) strokeColor = 'red';
+  else if (rating < 70) strokeColor = '#cdcf2f';
+  else strokeColor = '#21d07a';
+
+  return (
+    <div className="movie-page">
+      <div className="movie-backdrop-container">
+
+        <img className="movie-backdrop"
+          src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}alt={movie.title}/>
+
+        <div className="movie-content">
+
+          <div className="movie-poster-container">
+            <img
+              className="movie-poster-image"
+              src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+              alt={movie.title}
+            />
+          </div>
+
+          <div className="movie-details">
+            <h1>{movie.title} <span className="movie-title-date">({movie.release_date.split("-")[0]})</span></h1>
+            <ul className="movie-info">
+              <li>{movie.release_date}</li>
+              <li>{movie.genres.map(genre => genre.name).join(", ")}</li>
+              <li>{movie.runtime} min</li>
+            </ul>
+
+            <div className="movie-rating-score">
+
+              <div className="movie-score">
+                <CircularProgressbar
+                  value={rating}
+                  text={`${rating.toFixed(0)}%`}
+                  styles={buildStyles({
+                    pathColor: strokeColor,
+                    textColor: 'white',
+                    trailColor: 'gray',
+                    pathTransitionDuration: 0.5,
+                    textSize: '30px',
+                  })}
+                />
+              </div>
+
+              <p className="score-text">Score <br /> d'évaluation</p>
+
+              <div className="trailer-button">
+                <button onClick={openModal}>Voir la bande-annonce</button>
+              </div>
+
+            </div>
+
+            <div className="movie-synopsis">
+              <p>Synopsis :</p>
+              <p className="movie-overview">{movie.overview}</p>
+            </div>
+
+            <div className="movie-tagline">
+              <p>{movie.tagline}</p>
+            </div>
+
+            <div className="movie-crew">
+
+              <h2>Équipe</h2>
+
+            <div className="crew-list">
+  {movie.credits.crew.slice(0, 4).map((member) => (
+    <div key={member.id} className="crew-member">
+      <p className="crew-member-name">{member.name}</p>
+      <p className="crew-member-job">{member.job}</p>
+    </div>
+  ))}
+</div>
+
+
+            </div>
+            
+          </div>
+
         </div>
       </div>
-    </div>
-  </div>
-);
 
+      <div className="casting-slider">
+        <h2>Casting</h2>
+        <div className="casting-list">
+          {movie.credits.cast.map(cast => (
+            <div key={cast.id} className="casting-item">
+              <img
+                className="casting-image"
+                src={`https://image.tmdb.org/t/p/original/${cast.profile_path}`}
+                alt={cast.name}
+              />
+              <div className="casting-info">
+                <h3>{cast.name}</h3>
+                <p>{cast.character}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {isModalOpen && (
+        <div className="modal-overlay" onClick={closeModal}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="close-modal" onClick={closeModal}>
+              &times;
+            </button>
+            <div className="video-container">
+              <iframe
+                width="100%"
+                height="450"
+                src={`https://www.youtube.com/embed/${movieVideo.key}?autoplay=1`}
+                title="Bande-annonce"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default MoviePage;

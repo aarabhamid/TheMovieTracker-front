@@ -2,7 +2,7 @@ import "./personcard.css";
 import { Link } from "react-router-dom";
 
 
-function PersonCard({ person, personName, character }) {
+function PersonCard({ person, character }) {
   return (
     <div className="movie-card">
       <Link to={`/person/${person.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
@@ -15,7 +15,7 @@ function PersonCard({ person, personName, character }) {
           />
         </div>
         <span className="separate-line"></span>
-        <h3 className="movie-title">{personName}</h3>
+        <h3 className="movie-title">{person.name}</h3>
         {character ? (
           <p className="person-know-for">{character}</p>
         ) : (

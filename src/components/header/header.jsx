@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./header.css";
+import logo from "../../assets/TMT-size.PNG"; // Ajuste le chemin selon l'emplacement du fichier
+
 
 function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,7 +21,7 @@ function Header() {
         <header className="header">
             <div className="logo-container">
                 <Link to="/">
-                    <img className="logo-header" src="./src/assets/TMT-size.PNG" alt="logo the movie tracker" />
+<               img className="logo-header" src={logo} alt="logo the movie tracker" />
                     <h2>The Movie Tracker</h2>
                 </Link>
             </div>

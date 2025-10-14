@@ -1,56 +1,196 @@
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import instanceAxios from "../../utils/axios";
-
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import PersonCard from "../../components/personCard/personcard";
+import 'react-circular-progressbar/dist/styles.css';
 import "./tvshowpage.css";
 
 function TvShowPage() {
-    const { id } = useParams();
-    const [tvShow, setTvShow] = useState(null);
+  const { id } = useParams();
+  const [tvShow, setTvShow] = useState(null);
+  const [tvShowVideo, setTvShowVideo] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-    useEffect(() => {
-        const fetchTvShow = async () => {
-            try {
-                const response = await instanceAxios.get(`/tv/${id}`);
-                setTvShow(response.data);
-            } catch (error) {
-                console.error("Error fetching tv show:", error);
-            }
-        };
+  useEffect(() => {
+    const fetchTvShow = async () => {
+      try {
+        const response = await instanceAxios.get(`/tv/${id}`);
+        const videoResponse = await instanceAxios.get(`/tv/${id}/videos`);
+        setTvShow(response.data);
+        if (videoResponse.data.length > 0) {
+          setTvShowVideo(videoResponse.data[0]);
+        }
+      } catch (error) {
+        console.error("Error fetching tv show:", error);
+      }
+    };
+    fetchTvShow();
+  }, [id]);
 
-        fetchTvShow();
-    }, [id]);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
-    if (!tvShow) {
-        return <div>Loading...</div>;
+  if (!tvShow || !tvShowVideo) {
+    return <div>Loading...</div>;
+  }
+
+  const formattedRating = tvShow.vote_average.toFixed(1) * 10;
+  const rating = parseFloat(formattedRating);
+  let strokeColor;
+  if (rating < 50) strokeColor = 'red';
+  else if (rating < 70) strokeColor = '#cdcf2f';
+  else strokeColor = '#21d07a';
+
+  // Fonction pour formater la date avec Intl.DateTimeFormat
+    function formatDate(dateString) {
+        if (!dateString) return "Date inconnue";
+        const [year, month, day] = dateString.split('-');
+        const date = new Date(year, month - 1, day);
+        return new Intl.DateTimeFormat('fr-FR', {
+            day: '2-digit',
+            month: 'long',
+            year: 'numeric'
+        }).format(date);
     }
+  const tvShowDate = formatDate(tvShow.first_air_date);
 
-   return (
-  <div className="tv-show-page">
-    <div className="movie-backdrop-container">
-      <img
-        className="movie-backdrop"
-        src={`https://image.tmdb.org/t/p/original/${tvShow.backdrop_path}`}
-        alt={tvShow.title}
-      />
-      <div className="movie-content">
-        <div className="movie-poster-container">
-          <img
-            className="movie-poster-image"
-            src={`https://image.tmdb.org/t/p/original/${tvShow.poster_path}`}
-            alt={tvShow.title}
-          />
-        </div>
-        <div className="movie-details">
-          <h1>{tvShow.title}</h1>
-          <p>{tvShow.overview}</p>
-          <h2>Similar TV Shows</h2>
+  return (
+    <div className="tv-show-page">
+      <div className="movie-backdrop-container">
+        <img
+          className="movie-backdrop"
+          src={`https://image.tmdb.org/t/p/original/${tvShow.backdrop_path}`}
+          alt={tvShow.name}
+        />
+        <div className="movie-content">
+          <div className="movie-poster-container">
+            <img
+              className="movie-poster-image"
+              src={`https://image.tmdb.org/t/p/original/${tvShow.poster_path}`}
+              alt={tvShow.name}
+            />
+          </div>
+          <div className="movie-details">
+            <h1>
+              {tvShow.name} <span className="movie-title-date">({tvShow.first_air_date.split("-")[0]})</span>
+            </h1>
+            <ul className="movie-info">
+              <li>{tvShow.first_air_date}</li>
+              <li>{tvShow.genres.map(genre => genre.name).join(", ")}</li>
+              <li>{tvShow.number_of_seasons + " saisons" }</li>
+            </ul>
+            <div className="movie-rating-score">
+              <div className="movie-score">
+                <CircularProgressbar
+                  value={rating}
+                  text={`${rating.toFixed(0)}%`}
+                  styles={buildStyles({
+                    pathColor: strokeColor,
+                    textColor: 'white',
+                    trailColor: 'gray',
+                    pathTransitionDuration: 0.5,
+                    textSize: '30px',
+                  })}
+                />
+              </div>
+              <p className="score-text">Score <br /> d'évaluation</p>
+              <div className="trailer-button">
+                <button onClick={openModal}>Voir la bande-annonce</button>
+              </div>
+            </div>
+            <div className="movie-synopsis">
+              <p>Synopsis :</p>
+              <p className="movie-overview">{tvShow.overview}</p>
+            </div>
+            <div className="movie-tagline">
+              <p>{tvShow.tagline}</p>
+            </div>
+            <div className="movie-crew">
+              <h2>Équipe</h2>
+              <div className="crew-list">
+                {tvShow.credits?.crew.slice(0, 4).map((member) => (
+                  <div key={member.id} className="crew-member">
+                    <p className="crew-member-name">{member.name}</p>
+                    <p className="crew-member-job">{member.job}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-);
+      <div className="casting-slider">
+        <h2>Casting</h2>
+        <div className="casting-list">
+          {tvShow.credits?.cast.slice(0, 10).map((cast) => (
+            <PersonCard
+              key={cast.id}
+              person={cast}
+              personName={cast.name}
+              character={cast.character}
+            />
+          ))}
+        </div>
+      </div>
 
+      <div className="seasons-section">
+        <h3>Saisons</h3>
+        <div className="seasons-list">
+          {tvShow.seasons.map((season) => (
+            <div key={season.id} className="season-card"> 
+
+            <div>
+              <img
+                src={`https://image.tmdb.org/t/p/original/${season.poster_path}`}
+                alt={season.name}
+                className="season-poster"
+                />
+            </div>
+
+
+
+              <div className="season-details">
+                <h3>{season.name}</h3>
+
+                <ul>
+                  <li>{season.episode_count} épisodes</li>
+                  <li>{tvShowDate}</li>
+                </ul>
+
+              <div className="season-overview">
+                <p>{season.overview}</p>
+              </div>
+              
+              </div>
+
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {isModalOpen && (
+        <div className="modal-overlay" onClick={closeModal}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="close-modal" onClick={closeModal}>
+              &times;
+            </button>
+            <div className="video-container">
+              <iframe
+                width="100%"
+                height="450"
+                src={`https://www.youtube.com/embed/${tvShowVideo.key}?autoplay=1`}
+                title="Bande-annonce"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default TvShowPage;

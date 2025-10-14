@@ -43,3 +43,61 @@
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
+
+.seasons-section {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  gap: 1rem;
+  padding-left: 2rem;
+} 
+
+.seasons-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.season-poster {
+  width: 100px;
+  height: 150px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.season-card {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+}
+
+.season-card:last-child {
+  border-bottom: 1px solid #ccc;
+}
+
+
+.season-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+
+.season-details ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 1rem;
+  color: #2e2c2c;
+  font-size: 12px;
+}
+
+.season-overview {
+  margin-top: 1rem;
+  font-size: 13px;
+  padding-right: 2rem;  
+}

@@ -5,6 +5,6 @@ const instanceAxios = axios.create({
     //withCredentials: true, // Inclut les cookies
   });
   
-  console.log("URL du backend :", import.meta.env.VITE_API_URL);
+
 
   export default instanceAxios;

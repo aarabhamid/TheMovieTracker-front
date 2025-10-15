@@ -53,7 +53,7 @@ function TvShowPage() {
             year: 'numeric'
         }).format(date);
     }
-  const tvShowDate = formatDate(tvShow.first_air_date);
+  
 
   return (
     <div className="tv-show-page">
@@ -155,7 +155,7 @@ function TvShowPage() {
 
                 <ul>
                   <li>{season.episode_count} épisodes</li>
-                  <li>{tvShowDate}</li>
+                   <li>{formatDate(season.air_date)}</li>
                 </ul>
 
               <div className="season-overview">

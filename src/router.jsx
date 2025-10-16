@@ -3,6 +3,7 @@ import SliderComponent from "./pages/homepage/homepage.jsx";
 import MainLayout from "./layouts/MainLayout.jsx";
 import MoviePage from "./pages/moviepage/moviepage.jsx";
 import TvShowPage from "./pages/tvshowpage/tvshowpage.jsx";
+import PersonPage from "./pages/personpage/personpage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
             { 
                 path: '/tv/:id',
                 element: <TvShowPage />,
+            },
+            {
+                path: '/person/:id',
+                element: <PersonPage />,
             }
         ],
     },

@@ -66,6 +66,7 @@ function MoviePage() {
               <li>{movie.release_date}</li>
               <li>{movie.genres.map(genre => genre.name).join(", ")}</li>
               <li>{movie.runtime} min</li>
+              <li>{movie.origin_country.join(", ")}</li>
             </ul>
 
             <div className="movie-rating-score">

@@ -4,6 +4,8 @@ import MainLayout from "./layouts/MainLayout.jsx";
 import MoviePage from "./pages/moviepage/moviepage.jsx";
 import TvShowPage from "./pages/tvshowpage/tvshowpage.jsx";
 import PersonPage from "./pages/personpage/personpage.jsx";
+import UpcomingMovies from "./pages/upcomingmovies/upcomingmovies.jsx";
+import UpcomingTVShows from "./pages/upcomingtvshow/ontheairtvshow.jsx";
 
 const router = createBrowserRouter([
     {
@@ -25,6 +27,14 @@ const router = createBrowserRouter([
             {
                 path: '/person/:id',
                 element: <PersonPage />,
+            },
+            {
+                path: '/upcoming-movies',
+                element: <UpcomingMovies />,
+            },
+            {
+                path: '/tvshows/airing-today',
+                element: <UpcomingTVShows />,
             }
         ],
     },

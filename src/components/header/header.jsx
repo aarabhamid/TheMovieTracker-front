@@ -37,7 +37,7 @@ function Header() {
                         <ul className={`dropdown ${openDropdown === 0 ? "mobile-open" : ""}`}>
                             <li><Link to="/movies/popular" onClick={toggleMenu}>Populaires</Link></li>
                             <li><Link to="/movies/top-rated" onClick={toggleMenu}>Mieux notés</Link></li>
-                            <li><Link to="/movies/upcoming" onClick={toggleMenu}>À venir</Link></li>
+                            <li><Link to="/upcoming-movies" onClick={toggleMenu}>À venir</Link></li>
                         </ul>
                     </li>
                     <li className="nav-item">

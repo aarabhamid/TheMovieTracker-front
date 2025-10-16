@@ -7,6 +7,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./homepage.css";
 import { GrNext, GrPrevious } from "react-icons/gr";
+import SearchBar from "../../components/searchbar/searchbar";
 
 function SliderComponent() {
   const [movies, setMovies] = useState([]);
@@ -77,6 +78,8 @@ function SliderComponent() {
 
   return (
     <div className="section-slider">
+
+      <SearchBar />
 
       <div className="title-and-arrows">
         <h2>Les films de la semaine</h2>

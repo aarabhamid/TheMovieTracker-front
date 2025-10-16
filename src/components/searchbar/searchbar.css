@@ -1,0 +1,25 @@
+.search-bar {
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    margin: 2rem;
+}
+
+.search-bar input {
+    border: none;
+    outline: none;
+    flex: 1;
+    padding: 8px;
+}
+
+.search-bar-button {
+    background-color: rgba(91, 207, 207, 1);
+    border: 0.5px solid #ccc;
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 20px;
+    color: white;
+    text-decoration: none;
+}

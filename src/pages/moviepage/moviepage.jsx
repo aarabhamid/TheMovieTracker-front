@@ -44,6 +44,8 @@ function MoviePage() {
   else strokeColor = '#21d07a';
 
   return (
+
+    
     <div className="movie-page">
       <div className="movie-backdrop-container">
 

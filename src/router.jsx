@@ -6,6 +6,7 @@ import TvShowPage from "./pages/tvshowpage/tvshowpage.jsx";
 import PersonPage from "./pages/personpage/personpage.jsx";
 import UpcomingMovies from "./pages/upcomingmovies/upcomingmovies.jsx";
 import UpcomingTVShows from "./pages/upcomingtvshow/ontheairtvshow.jsx";
+import SearchPage from "./pages/searchpage/searchpage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
             {
                 path: '/tvshows/airing-today',
                 element: <UpcomingTVShows />,
+            },
+            {
+                path: '/search',
+                element: <SearchPage />,
             }
         ],
     },

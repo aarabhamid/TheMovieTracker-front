@@ -24,7 +24,7 @@ function SearchBar({ query, setQuery }) {
       />
       <Link
         className="search-bar-button"
-        to={`/search?query=${queryState}`}
+        to={`/search?q=${queryState}`}
         onClick={() => setQuery(queryState)}
       >
         Rechercher

@@ -93,6 +93,9 @@ function TvShowPage() {
                 ))}
               </li>
             </ul>
+
+            <p className="movie-original-title">Titre d'origine : {tvShow.original_name}</p>
+            
             <div className="movie-rating-score">
               <div className="movie-score">
                 <CircularProgressbar

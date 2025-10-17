@@ -4,6 +4,7 @@ import instanceAxios from "../../utils/axios";
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import ReactCountryFlag from "react-country-flag";
 import PersonCard from "../../components/personCard/personcard";
+import GalleryImages from "../../components/galleryImages/galleryImages";
 import 'react-circular-progressbar/dist/styles.css';
 import "./moviepage.css";
 
@@ -46,12 +47,12 @@ function MoviePage() {
 
   return (
 
-    
+
     <div className="movie-page">
       <div className="movie-backdrop-container">
 
         <img className="movie-backdrop"
-          src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}alt={movie.title}/>
+          src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`} alt={movie.title} />
 
         <div className="movie-content">
 
@@ -70,18 +71,19 @@ function MoviePage() {
               <li>{movie.genres.map(genre => genre.name).join(", ")}</li>
               <li>{movie.runtime} min</li>
               <li>
-      {movie.origin_country.map((countryCode, index) => (
-        <span key={index} style={{ display: 'inline-flex', alignItems: 'center', marginRight: '8px' }}>
-          <ReactCountryFlag
-            countryCode={countryCode}
-            svg
-            style={{ width: '1.5em', height: '1.5em', marginRight: '4px' }}
-          />
-          {countryCode}
-        </span>
-      ))}
-    </li>
+                {movie.origin_country.map((countryCode, index) => (
+                  <span key={index} style={{ display: 'inline-flex', alignItems: 'center', marginRight: '8px' }}>
+                    <ReactCountryFlag
+                      countryCode={countryCode}
+                      svg
+                      style={{ width: '1.5em', height: '1.5em', marginRight: '4px' }}
+                    />
+                    {countryCode}
+                  </span>
+                ))}
+              </li>
             </ul>
+            <p className="movie-original-title">Titre d'origine : {movie.original_title}</p>
 
             <div className="movie-rating-score">
 
@@ -120,36 +122,41 @@ function MoviePage() {
 
               <h2>Équipe</h2>
 
-            <div className="crew-list">
-  {movie.credits.crew.slice(0, 4).map((member) => (
-    <div key={member.id} className="crew-member">
-      <p className="crew-member-name">{member.name}</p>
-      <p className="crew-member-job">{member.job}</p>
-    </div>
-  ))}
-</div>
+              <div className="crew-list">
+                {movie.credits.crew.slice(0, 4).map((member) => (
+                  <div key={member.id} className="crew-member">
+                    <p className="crew-member-name">{member.name}</p>
+                    <p className="crew-member-job">{member.job}</p>
+                  </div>
+                ))}
+              </div>
 
 
             </div>
-            
+
           </div>
 
         </div>
       </div>
 
       <div className="casting-slider">
-  <h2>Têtes d'affiche</h2>
-  <div className="casting-list">
-    {movie.credits.cast.slice(0, 10).map((cast) => (
-      <PersonCard
-        key={cast.id}
-        person={cast}
-        personName={cast.name}
-        character={cast.character} // Passe le nom du personnage
-      />
-    ))}
-  </div>
-</div>
+        <h2>Têtes d'affiche</h2>
+        <div className="casting-list">
+          {movie.credits.cast.slice(0, 10).map((cast) => (
+            <PersonCard
+              key={cast.id}
+              person={cast}
+              personName={cast.name}
+              character={cast.character} // Passe le nom du personnage
+            />
+          ))}
+        </div>
+      </div>
+
+      <div className="section-gallery-images">
+        <h2>Posters</h2>
+        <GalleryImages movieId={id} />
+      </div>
 
 
       {isModalOpen && (

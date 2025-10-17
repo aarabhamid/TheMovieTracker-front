@@ -35,16 +35,18 @@ function Header() {
                     <li className="nav-item">
                         <h2 onClick={(e) => toggleDropdown(0, e)}>Films</h2>
                         <ul className={`dropdown ${openDropdown === 0 ? "mobile-open" : ""}`}>
+                            {/*<li><Link to="/movies/popular" onClick={toggleMenu}>Populaires</Link></li>
                             <li><Link to="/movies/popular" onClick={toggleMenu}>Populaires</Link></li>
-                            <li><Link to="/movies/top-rated" onClick={toggleMenu}>Mieux notés</Link></li>
+                            <li><Link to="/movies/top-rated" onClick={toggleMenu}>Mieux notés</Link></li>*/}
                             <li><Link to="/upcoming-movies" onClick={toggleMenu}>À venir</Link></li>
                         </ul>
                     </li>
                     <li className="nav-item">
                         <h2 onClick={(e) => toggleDropdown(1, e)}>Séries</h2>
                         <ul className={`dropdown ${openDropdown === 1 ? "mobile-open" : ""}`}>
+                            {/*}
                             <li><Link to="/tvshows/popular" onClick={toggleMenu}>Populaires</Link></li>
-                            <li><Link to="/tvshows/top-rated" onClick={toggleMenu}>Mieux notées</Link></li>
+                            <li><Link to="/tvshows/top-rated" onClick={toggleMenu}>Mieux notées</Link></li>*/}
                             <li><Link to="/tvshows/airing-today" onClick={toggleMenu}>Diffusées aujourd'hui</Link></li>
                         </ul>
                     </li>

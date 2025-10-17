@@ -11,7 +11,7 @@ function PersonCard({ person, character }) {
             src={`https://image.tmdb.org/t/p/original/${person.profile_path}`}
             alt={person.name}
             className="movie-poster"
-            style={{ width: '100%', height: '100%', display: 'block', borderRadius: '10px' }}
+            style={{ width: '90%', height: '100%', display: 'block', borderRadius: '10px', justifyContent: 'center', padding : '2px' }}
           />
         </div>
         <span className="separate-line"></span>

@@ -38,7 +38,7 @@ function MovieCard({ movie }) {
                         src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
                         alt={movie.title || movie.original_name}
                         className="movie-poster"
-                        style={{ width: '100%', height: '100%', display: 'block', borderRadius: '10px' }}
+                        style={{ width: '90%', height: '100%', display: 'block', borderRadius: '10px', justifyContent: 'center', padding : '2px' }}
                     />
                     <div className="movie-rating" >
                         <CircularProgressbar

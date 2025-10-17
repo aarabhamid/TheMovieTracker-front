@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import instanceAxios from "../../utils/axios";
 import MovieCard from "../../components/movieCard/movieCard";
+import SearchBar from "../../components/searchbar/searchbar";
 import "./upcomingmovies.css";  
 
 function UpcomingMovies() {
@@ -21,6 +22,7 @@ function UpcomingMovies() {
 
     return (
         <div className="upcoming-movies">
+            <SearchBar />
             <h1>Films à venir</h1>
             <div className="movie-list">
                 {upcomingMovies.map((movie) => (

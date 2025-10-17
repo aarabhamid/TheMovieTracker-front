@@ -16,6 +16,7 @@ function SliderComponent() {
   const movieSliderRef = useRef(null);
   const tvSliderRef = useRef(null);
   const personSliderRef = useRef(null);
+  
 
   const fetchData = async () => {
     try {

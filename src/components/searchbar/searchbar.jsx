@@ -1,17 +1,16 @@
-import { Link } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./searchbar.css";
 
-function SearchBar({ query, setQuery }) {
-  const [queryState, setQueryState] = useState(query || "");
-
-  useEffect(() => {
-    setQueryState(query || "");
-  }, [query]);
+function SearchBar() {
+  const [query, setQuery] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // Empêche le rechargement de la page
-    setQuery(queryState); // Met à jour la prop query du parent
+    e.preventDefault();
+    if (query.trim()) {
+      navigate(`/search?query=${encodeURIComponent(query)}`);
+    }
   };
 
   return (
@@ -19,16 +18,12 @@ function SearchBar({ query, setQuery }) {
       <input
         type="text"
         placeholder="Recherche de films, séries, personnes..."
-        value={queryState}
-        onChange={(e) => setQueryState(e.target.value)}
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
       />
-      <Link
-        className="search-bar-button"
-        to={`/search?q=${queryState}`}
-        onClick={() => setQuery(queryState)}
-      >
+      <button type="submit" className="search-bar-button">
         Rechercher
-      </Link>
+      </button>
     </form>
   );
 }

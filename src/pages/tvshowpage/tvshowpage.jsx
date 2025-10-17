@@ -134,7 +134,7 @@ function TvShowPage() {
         </div>
       </div>
       <div className="casting-slider">
-        <h2>Casting</h2>
+        <h2>Distribution des rôles</h2>
         <div className="casting-list">
           {tvShow.credits?.cast.slice(0, 10).map((cast) => (
             <PersonCard

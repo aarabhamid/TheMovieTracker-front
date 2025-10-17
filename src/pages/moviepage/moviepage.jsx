@@ -138,7 +138,7 @@ function MoviePage() {
       </div>
 
       <div className="casting-slider">
-  <h2>Casting</h2>
+  <h2>Têtes d'affiche</h2>
   <div className="casting-list">
     {movie.credits.cast.slice(0, 10).map((cast) => (
       <PersonCard

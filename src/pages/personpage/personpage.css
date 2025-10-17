@@ -95,3 +95,12 @@
     background-color: #c2cccd;
     margin: 2rem auto;
 }
+
+.section-gallery-images {
+    padding: 0 2rem;
+}
+
+.section-gallery-images h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}

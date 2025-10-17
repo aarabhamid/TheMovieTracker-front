@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import instanceAxios from "../../utils/axios";
 import { useParams } from "react-router-dom";
 import MovieCard from "../../components/movieCard/movieCard";
+import GalleryImages from '../../components/galleryImages/galleryImages';
 
 function PersonPage() {
     const { id } = useParams();
@@ -65,6 +66,11 @@ function PersonPage() {
             <div className='separate-section'>
 
                 <span ></span>
+            </div>
+
+            <div className='section-gallery-images'>
+                <h2>Galerie d'images</h2>
+                <GalleryImages personId={id} />
             </div>
 
             <div className='person-movies'>

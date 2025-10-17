@@ -1,0 +1,108 @@
+.gallery-container {
+  padding: 1rem;
+}
+
+.gallery-images {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  padding-bottom: 10px;
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+}
+
+.gallery-images::-webkit-scrollbar {
+  height: 8px;
+}
+
+.gallery-images::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.gallery-images::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.gallery-images-item {
+  box-sizing: border-box;
+  width: 150px;
+  height: 250px;
+  flex-shrink: 0;
+  cursor: pointer;
+  object-fit: cover;
+}
+
+.voir-plus {
+  display: block;
+  margin: 10px auto;
+  padding: 8px 16px;
+  background-color: rgba(42, 123, 155, 1) ;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.voir-plus:hover {
+  background-color: rgba(91, 207, 207, 1);
+  transition: ease-in-out 0.3s;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
+.modal-image {
+  max-width: 100%;
+  max-height: 80vh;
+  display: block;
+  margin: 0 auto;
+}
+
+.modal-close {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  color: white;
+  font-size: 35px;
+  font-weight: bold;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.modal-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.modal-prev {
+  left: -50px;
+}
+
+.modal-next {
+  right: -50px;
+}

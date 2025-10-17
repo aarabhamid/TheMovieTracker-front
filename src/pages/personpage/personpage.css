@@ -20,6 +20,11 @@
     margin-right: 20px;
 }
 
+.person-info { 
+    padding-left: 1rem;
+    border-left: 1px solid #c2cccd;
+}
+
 .person-info-details {
     display: flex;
     flex-direction: row;
@@ -104,3 +109,29 @@
     font-size: 1.5rem;
     margin-bottom: 1rem;
 }
+
+
+.back-link {
+    display: inline-flex;
+    align-items: start;
+    gap: 0.5rem;
+    text-decoration: none;
+    margin: 0.5rem;
+    color: #2a7c9b;
+    font-weight: 100;
+    font-size: 14px;
+    transition: color 0.2s;
+    padding: 0.3rem 1rem;
+   border: 2px solid #2a7c9b;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.back-link:hover {
+    color: white;
+    background-color: #2a7c9b;
+    transition: color 0.5s;
+    transition: ease-in background-color 0.5s;
+}
+
+

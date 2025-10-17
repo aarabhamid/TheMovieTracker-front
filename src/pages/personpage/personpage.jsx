@@ -2,6 +2,7 @@ import './personpage.css';
 import { useState, useEffect } from "react";
 import instanceAxios from "../../utils/axios";
 import { useParams } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import MovieCard from "../../components/movieCard/movieCard";
 import GalleryImages from '../../components/galleryImages/galleryImages';
 
@@ -29,8 +30,13 @@ function PersonPage() {
 
     return (
         <div >
-
+            <div>
+                <Link to="#" onClick={() => window.history.back()} className="back-link">
+                    ← Retour
+                </Link>
+            </div>
             <div className="person-page">
+            
 
                 <div className='person-profile_path'>
                     <img

@@ -29,14 +29,17 @@
 }
 
 .movie-content {
-  position: relative;
-  z-index: 1;
-  color: white;
-  padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  gap: 10rem;
+    position: relative;
+    z-index: 1;
+    color: white;
+    padding: 20px;
+    max-width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: 10rem;
+    align-items: center;
 }
 
 .movie-poster-image {
@@ -230,4 +233,17 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: start;
+}
+
+.back-link--movie {
+  position: absolute;
+  top: 1rem; /* Correspond au padding du conteneur */
+  left: 2rem;
+  z-index: 10; /* Doit être supérieur à tous les autres z-index dans .movie-backdrop-container */
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.back-link--movie:hover {
+  color: #2A7B9B;
 }

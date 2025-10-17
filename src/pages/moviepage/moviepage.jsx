@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import instanceAxios from "../../utils/axios";
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import ReactCountryFlag from "react-country-flag";
@@ -49,7 +50,14 @@ function MoviePage() {
 
 
     <div className="movie-page">
+
       <div className="movie-backdrop-container">
+
+        <div>
+          <Link to="#" onClick={() => window.history.back()} className=" back-link--movie back-link">
+             <span>&lt;</span> Retour
+          </Link>
+        </div>
 
         <img className="movie-backdrop"
           src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`} alt={movie.title} />

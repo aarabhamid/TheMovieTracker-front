@@ -28,6 +28,7 @@
   box-sizing: border-box;
   width: 150px;
   height: 250px;
+  border-radius: 10px;
   flex-shrink: 0;
   cursor: pointer;
   object-fit: cover;
@@ -40,7 +41,7 @@
   background-color: rgba(42, 123, 155, 1) ;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 10px;
   cursor: pointer;
 }
 

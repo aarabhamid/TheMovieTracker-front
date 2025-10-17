@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import instanceAxios from "../../utils/axios";
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import ReactCountryFlag from "react-country-flag";
 import PersonCard from "../../components/personCard/personcard";
 import 'react-circular-progressbar/dist/styles.css';
 import "./moviepage.css";
@@ -68,7 +69,18 @@ function MoviePage() {
               <li>{movie.release_date}</li>
               <li>{movie.genres.map(genre => genre.name).join(", ")}</li>
               <li>{movie.runtime} min</li>
-              <li>{movie.origin_country.join(", ")}</li>
+              <li>
+      {movie.origin_country.map((countryCode, index) => (
+        <span key={index} style={{ display: 'inline-flex', alignItems: 'center', marginRight: '8px' }}>
+          <ReactCountryFlag
+            countryCode={countryCode}
+            svg
+            style={{ width: '1.5em', height: '1.5em', marginRight: '4px' }}
+          />
+          {countryCode}
+        </span>
+      ))}
+    </li>
             </ul>
 
             <div className="movie-rating-score">

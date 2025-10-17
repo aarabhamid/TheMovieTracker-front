@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import instanceAxios from "../../utils/axios";
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import ReactCountryFlag from "react-country-flag";
 import PersonCard from "../../components/personCard/personcard";
 import 'react-circular-progressbar/dist/styles.css';
 import "./tvshowpage.css";
@@ -58,11 +59,11 @@ function TvShowPage() {
   return (
     <div className="tv-show-page">
       <div className="movie-backdrop-container">
-        <img
-          className="movie-backdrop"
+        <img className="movie-backdrop"
           src={`https://image.tmdb.org/t/p/original/${tvShow.backdrop_path}`}
           alt={tvShow.name}
         />
+
         <div className="movie-content">
           <div className="movie-poster-container">
             <img
@@ -79,6 +80,18 @@ function TvShowPage() {
               <li>{tvShow.first_air_date}</li>
               <li>{tvShow.genres.map(genre => genre.name).join(", ")}</li>
               <li>{tvShow.number_of_seasons + " saisons" }</li>
+              <li>
+                {tvShow.origin_country.map((countryCode, index) => (
+                  <span key={index} style={{ display: 'inline-flex', alignItems: 'center', marginRight: '8px' }}>
+                    <ReactCountryFlag
+                      countryCode={countryCode}
+                      svg
+                      style={{ width: '1.5em', height: '1.5em', marginRight: '4px' }}
+                    />
+                    {countryCode}
+                  </span>
+                ))}
+              </li>
             </ul>
             <div className="movie-rating-score">
               <div className="movie-score">

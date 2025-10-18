@@ -1,37 +1,27 @@
-import { Outlet, useLocation, useNavigationType } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import Header from "../components/header/header.jsx";
 import Footer from "../components/footer/footer.jsx";
 
 function MainLayout() {
-    const { pathname } = useLocation();
-    const navType = useNavigationType();
+  const { pathname } = useLocation();
 
-    useEffect(() => {
-        if ('scrollRestoration' in window.history) {
-            window.history.scrollRestoration = 'manual';
-        }
-    }, []);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 10);
+    return () => clearTimeout(timer);
+  }, [pathname]);
 
-    useEffect(() => {
-        if (navType !== 'POP') {
-            window.scrollTo(0, 0);
-        }
-    }, [pathname, navType]);
-
-    return (
-        <div>
-            <div>
-                <Header />
-            </div>
-            <main>
-                <Outlet />
-            </main>
-            <div>
-                <Footer />
-            </div>
-        </div>
-    );
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
+      <Header />
+      <main style={{ flex: 1 }}>
+        <Outlet />
+      </main>
+      <Footer />
+    </div>
+  );
 }
 
 export default MainLayout;

@@ -74,7 +74,7 @@ function PersonPage() {
     window.history.back();
     window.scrollTo(0, 0);
   }}
-  className="back-link--movie back-link"
+  className=" back-link"
 >
   <span>&lt;</span> Retour
 </Link>

@@ -4,9 +4,7 @@
   box-sizing: border-box;
 }
 
-html, body, #root {
-  height: 100%;
-  width: 100%;
+html {
   overflow-x: hidden; /* Empêche le défilement horizontal */
 }
 
@@ -14,6 +12,12 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh; /* Prend au moins la hauteur de l'écran */
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  flex: 1; /* Permet à #root de prendre toute la hauteur disponible */
 }
 
 /* Style pour le header et le footer */

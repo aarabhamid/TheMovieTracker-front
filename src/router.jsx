@@ -12,59 +12,34 @@ import TrendingMovieWeek from "./pages/trendingmovieweek/trendingmovieweek.jsx";
 import TrendingTvWeek from "./pages/trendingtvweek/trendingtvweek.jsx";
 import TrendingPersonWeek from "./pages/trendingpersonweek/trendingpersonweek.jsx";
 
+const scrollToTopLoader = () => {
+  window.scrollTo(0, 0);
+  return null;
+};
+
 const router = createBrowserRouter([
-    {
-        path: '/',
-        element: <MainLayout />,
-        children: [
-            {
-                path: '/',
-                element: <HomepageComponent />,
-            },
-            {
-                path: '/movies/:id',
-                element: <MoviePage />,
-            }, 
-            { 
-                path: '/tv/:id',
-                element: <TvShowPage />,
-            },
-            {
-                path: '/person/:id',
-                element: <PersonPage />,
-            },
-            {
-                path: '/movies/upcoming',
-                element: <UpcomingMovies />,
-            },
-            {
-                path: '/movies/trending',
-                element: <TrendingMovieWeek />,
-            },
-            {
-                path: '/tvshows/airing-today',
-                element: <UpcomingTVShows />,
-            },
-            {
-                path: '/tvshows/trending',
-                element: <TrendingTvWeek />,
-            },
-            {
-                path: '/trending/people',
-                element: <TrendingPersonWeek />,
-            },
-            {
-                path: '/search',
-                element: <SearchPage />,
-            },
-            {
-                path: '*',
-                element: <ErrorPage />,
-            }, 
-           
-        ],
-    },
+  {
+    path: '/',
+    element: <MainLayout />,
+    children: [
+      { path: '/', element: <HomepageComponent /> },
+      { path: '/movies/:id', element: <MoviePage /> },
+      { path: '/tv/:id', element: <TvShowPage /> },
+      { path: '/person/:id', element: <PersonPage /> },
+      { path: '/movies/upcoming', element: <UpcomingMovies /> },
+      { path: '/movies/trending', element: <TrendingMovieWeek /> },
+      { path: '/tvshows/airing-today', element: <UpcomingTVShows /> },
+      { path: '/tvshows/trending', element: <TrendingTvWeek /> },
+      { path: '/trending/people', element: <TrendingPersonWeek /> },
+      { path: '/search', element: <SearchPage /> },
+      { path: '*', element: <ErrorPage /> },
+    ],
+  },
 ]);
 
-export default router;  
-  
+// Désactive la restauration automatique du scroll
+if (typeof window !== 'undefined') {
+  window.history.scrollRestoration = 'manual';
+}
+
+export default router;

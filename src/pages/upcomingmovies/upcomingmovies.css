@@ -1,7 +1,13 @@
-.upcoming-movies {
+.upcoming-movies, 
+.trending-movie-week,
+.trending-tv-week,
+.trending-person-week {
     padding: 2rem;
 }
 
-.upcoming-movies h1 {
+.upcoming-movies h1,
+.trending-movie-week h2,
+.trending-tv-week h2,
+.trending-person-week h2 {
     margin-bottom: 1rem;
 }

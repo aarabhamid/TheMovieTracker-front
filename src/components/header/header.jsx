@@ -35,25 +35,22 @@ function Header() {
                     <li className="nav-item">
                         <h2 onClick={(e) => toggleDropdown(0, e)}>Films</h2>
                         <ul className={`dropdown ${openDropdown === 0 ? "mobile-open" : ""}`}>
-                            {/*<li><Link to="/movies/popular" onClick={toggleMenu}>Populaires</Link></li>
-                            <li><Link to="/movies/popular" onClick={toggleMenu}>Populaires</Link></li>
-                            <li><Link to="/movies/top-rated" onClick={toggleMenu}>Mieux notés</Link></li>*/}
-                            <li><Link to="/upcoming-movies" onClick={toggleMenu}>À venir</Link></li>
+                            <li><Link to="/movies/trending" onClick={toggleMenu}>Tendances de la semaine</Link></li>
+                            <li><Link to="/movies/upcoming" onClick={toggleMenu}>À venir</Link></li>
                         </ul>
                     </li>
                     <li className="nav-item">
                         <h2 onClick={(e) => toggleDropdown(1, e)}>Séries</h2>
                         <ul className={`dropdown ${openDropdown === 1 ? "mobile-open" : ""}`}>
-                            {/*}
-                            <li><Link to="/tvshows/popular" onClick={toggleMenu}>Populaires</Link></li>
-                            <li><Link to="/tvshows/top-rated" onClick={toggleMenu}>Mieux notées</Link></li>*/}
+                            <li><Link to="/tvshows/trending" onClick={toggleMenu}>Tendances de la semaine</Link></li>
+                            
                             <li><Link to="/tvshows/airing-today" onClick={toggleMenu}>Diffusées aujourd'hui</Link></li>
                         </ul>
                     </li>
                     <li className="nav-item">
                         <h2 onClick={(e) => toggleDropdown(2, e)}>Artistes</h2>
                         <ul className={`dropdown ${openDropdown === 2 ? "mobile-open" : ""}`}>
-                            <li><Link to="/artists/popular" onClick={toggleMenu}>Populaires</Link></li>
+                            <li><Link to="/trending/people" onClick={toggleMenu}>Populaires</Link></li>
                         </ul>
                     </li>
                 </ul>

@@ -8,6 +8,9 @@ import UpcomingMovies from "./pages/upcomingmovies/upcomingmovies.jsx";
 import UpcomingTVShows from "./pages/upcomingtvshow/ontheairtvshow.jsx";
 import SearchPage from "./pages/searchpage/searchpage.jsx";
 import ErrorPage from "./pages/errorpage/errorpage.jsx";
+import TrendingMovieWeek from "./pages/trendingmovieweek/trendingmovieweek.jsx";
+import TrendingTvWeek from "./pages/trendingtvweek/trendingtvweek.jsx";
+import TrendingPersonWeek from "./pages/trendingpersonweek/trendingpersonweek.jsx";
 
 const router = createBrowserRouter([
     {
@@ -31,12 +34,24 @@ const router = createBrowserRouter([
                 element: <PersonPage />,
             },
             {
-                path: '/upcoming-movies',
+                path: '/movies/upcoming',
                 element: <UpcomingMovies />,
+            },
+            {
+                path: '/movies/trending',
+                element: <TrendingMovieWeek />,
             },
             {
                 path: '/tvshows/airing-today',
                 element: <UpcomingTVShows />,
+            },
+            {
+                path: '/tvshows/trending',
+                element: <TrendingTvWeek />,
+            },
+            {
+                path: '/trending/people',
+                element: <TrendingPersonWeek />,
             },
             {
                 path: '/search',

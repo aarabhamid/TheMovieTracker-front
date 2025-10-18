@@ -9,24 +9,57 @@ import GalleryImages from '../../components/galleryImages/galleryImages';
 function PersonPage() {
     const { id } = useParams();
     const [person, setPerson] = useState(null);
+    const [knowFor, setKnowFor] = useState([]);
+   
 
+     const personAge = (birthday) => {
+        if (!birthday) return "Date de naissance inconnue";
+        const birthDate = new Date(birthday);
+        const today = new Date();
+
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const monthDiff = today.getMonth() - birthDate.getMonth();
+
+        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+        }
+
+        return `${age} ans`;
+    };
+
+    
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const personResponse = await instanceAxios.get(`/person/${id}`);
                 setPerson(personResponse.data);
-  
+                
+               // Remplace les espaces par des tirets
+            const formattedName = personResponse.data.name.split(" ").join("-");
+
+            const knowForResponse = await instanceAxios.get(`/search?q=${formattedName}`)
+            setKnowFor(knowForResponse.data.results[0].known_for);
+            console.log("Know For Response:", knowForResponse.data.results[0].known_for);
+
             } catch (error) {
                 console.error("Error fetching person data:", error);
             }
         };
+        
 
         fetchData();
+        
     }, [id]);
+
+    
+    
 
     if (!person) {
         return <div>Loading...</div>;
     }
+
+
+
 
     return (
         <div >
@@ -49,7 +82,7 @@ function PersonPage() {
                     <h1>{person.name} </h1>
 
                     <ul className="person-info-details">
-                        <li> {person.birthday}</li>
+                        <li>{personAge(person.birthday)}</li>
                         <li>{person.place_of_birth}</li>
                     </ul>
 
@@ -66,6 +99,23 @@ function PersonPage() {
 
 
 
+
+            </div>
+
+            <div className='separate-section'>
+
+                <span ></span>
+            </div>
+
+            <div className='section-know-for'>
+               <h2>Célèbre pour :</h2>
+                <div className='know-for-list'>
+                    {knowFor.map((item) => (
+                        <div key={item.id} className='know-for-item'>
+                            <MovieCard key={item.id} movie={item} />
+                        </div>
+                    ))}
+                </div>
 
             </div>
 

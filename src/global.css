@@ -8,4 +8,16 @@
 html, body, #root {
   height: 100%;
   width: 100%;
+  overflow-x: hidden; /* Empêche le défilement horizontal */
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Prend au moins la hauteur de l'écran */
+}
+
+/* Style pour le header et le footer */
+header, footer {
+  flex-shrink: 0; /* Empêche le rétrécissement */
 }

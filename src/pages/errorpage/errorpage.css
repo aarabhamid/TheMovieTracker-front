@@ -1,0 +1,26 @@
+.error-page {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem; /* Espace entre les éléments */
+    width: 100vw; /* Prend toute la largeur de l'écran */
+    min-height: 100vh; /* Prend toute la hauteur de l'écran (optionnel) */
+    background-color: #f8f9fa;
+    color: #343a40;
+    font-family: 'Arial', sans-serif;
+    padding: 20px; /* Ajoute un peu d'espace autour du contenu */
+    box-sizing: border-box; /* Inclut le padding dans la largeur totale */
+}
+
+.error-image {
+    width: 100%; /* Prend toute la largeur du parent */
+    max-width: 500px; /* Limite la largeur maximale de l'image (ajustable) */
+    height: auto; /* Garde les proportions de l'image */
+}
+
+.error-image img {
+    width: 100%; /* L'image prend toute la largeur de son parent */
+    height: auto; /* Garde les proportions de l'image */
+}

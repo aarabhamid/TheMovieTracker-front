@@ -7,6 +7,7 @@ import PersonPage from "./pages/personpage/personpage.jsx";
 import UpcomingMovies from "./pages/upcomingmovies/upcomingmovies.jsx";
 import UpcomingTVShows from "./pages/upcomingtvshow/ontheairtvshow.jsx";
 import SearchPage from "./pages/searchpage/searchpage.jsx";
+import ErrorPage from "./pages/errorpage/errorpage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
             {
                 path: '/search',
                 element: <SearchPage />,
+            },
+            {
+                path: '*',
+                element: <ErrorPage />,
             }
         ],
     },

@@ -12,10 +12,7 @@ import TrendingMovieWeek from "./pages/trendingmovieweek/trendingmovieweek.jsx";
 import TrendingTvWeek from "./pages/trendingtvweek/trendingtvweek.jsx";
 import TrendingPersonWeek from "./pages/trendingpersonweek/trendingpersonweek.jsx";
 
-const scrollToTopLoader = () => {
-  window.scrollTo(0, 0);
-  return null;
-};
+
 
 const router = createBrowserRouter([
   {

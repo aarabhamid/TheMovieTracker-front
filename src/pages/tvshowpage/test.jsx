@@ -5,7 +5,6 @@ import Loader from "../../components/loader/loader";
 import { Link } from 'react-router-dom';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import { FaRegPlayCircle } from "react-icons/fa";
-
 import ReactCountryFlag from "react-country-flag";
 import PersonCard from "../../components/personCard/personcard";
 import 'react-circular-progressbar/dist/styles.css';
@@ -16,7 +15,7 @@ function TvShowPage() {
   const [tvShow, setTvShow] = useState(null);
   const [tvShowVideo, setTvShowVideo] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-    const [episodes, setEpisodes] = useState(null);
+  const [episodes, setEpisodes] = useState(null);
   const [selectedSeason, setSelectedSeason] = useState(null);
   const [loadingEpisodes, setLoadingEpisodes] = useState(false);
 
@@ -36,21 +35,18 @@ function TvShowPage() {
     fetchTvShow();
   }, [id]);
 
- const fetchSeasonEpisodes = async (tvId, seasonNumber) => {
-  setLoadingEpisodes(true);
-  try {
-    const response = await instanceAxios.get(`/tv/${tvId}/season/${seasonNumber}`);
-    console.log("Réponse de l'API :", response.data); // Ajoute cette ligne
-    setEpisodes(response.data.episodes);
-    setSelectedSeason(seasonNumber);
-  } catch (error) {
-    console.error("Erreur :", error);
-  } finally {
-    setLoadingEpisodes(false);
-  }
-};
-
-
+  const fetchSeasonEpisodes = async (tvId, seasonNumber) => {
+    setLoadingEpisodes(true);
+    try {
+      const response = await instanceAxios.get(`/tv/${tvId}/season/${seasonNumber}`);
+      setEpisodes(response.data.episodes);
+      setSelectedSeason(seasonNumber);
+    } catch (error) {
+      console.error("Erreur lors de la récupération des épisodes:", error);
+    } finally {
+      setLoadingEpisodes(false);
+    }
+  };
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -66,41 +62,36 @@ function TvShowPage() {
   else if (rating < 70) strokeColor = '#cdcf2f';
   else strokeColor = '#21d07a';
 
-  // Fonction pour formater la date avec Intl.DateTimeFormat
-    function formatDate(dateString) {
-        if (!dateString) return "Date inconnue";
-        const [year, month, day] = dateString.split('-');
-        const date = new Date(year, month - 1, day);
-        return new Intl.DateTimeFormat('fr-FR', {
-            day: '2-digit',
-            month: 'long',
-            year: 'numeric'
-        }).format(date);
-    }
-  
+  function formatDate(dateString) {
+    if (!dateString) return "Date inconnue";
+    const [year, month, day] = dateString.split('-');
+    const date = new Date(year, month - 1, day);
+    return new Intl.DateTimeFormat('fr-FR', {
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric'
+    }).format(date);
+  }
 
   return (
     <div className="tv-show-page">
       <div className="movie-backdrop-container">
-  <div>
+        <div>
           <Link
-  onClick={() => {
-    window.history.back();
-    window.scrollTo(0, 0);
-  }}
-  className="back-link--movie back-link"
->
-  <span>&lt;</span> Retour
-</Link>
-
+            onClick={() => {
+              window.history.back();
+              window.scrollTo(0, 0);
+            }}
+            className="back-link--movie back-link"
+          >
+            <span>&lt;</span> Retour
+          </Link>
         </div>
-
-
-        <img className="movie-backdrop"
+        <img
+          className="movie-backdrop"
           src={`https://image.tmdb.org/t/p/original/${tvShow.backdrop_path}`}
           alt={tvShow.name}
         />
-
         <div className="movie-content">
           <div className="movie-poster-container">
             <img
@@ -114,9 +105,9 @@ function TvShowPage() {
               {tvShow.name} <span className="movie-title-date">({tvShow.first_air_date.split("-")[0]})</span>
             </h1>
             <ul className="movie-info">
-              <li>{tvShow.first_air_date}</li>
+              <li>{formatDate(tvShow.first_air_date)}</li>
               <li>{tvShow.genres.map(genre => genre.name).join(", ")}</li>
-              <li>{tvShow.number_of_seasons + " saisons" }</li>
+              <li>{tvShow.number_of_seasons} saisons</li>
               <li>
                 {tvShow.origin_country.map((countryCode, index) => (
                   <span key={index} style={{ display: 'inline-flex', alignItems: 'center', marginRight: '8px' }}>
@@ -130,9 +121,8 @@ function TvShowPage() {
                 ))}
               </li>
             </ul>
-
             <p className="movie-original-title">Titre d'origine : {tvShow.original_name}</p>
-            
+
             <div className="movie-rating-score">
               <div className="movie-score">
                 <CircularProgressbar
@@ -172,54 +162,53 @@ function TvShowPage() {
             </div>
           </div>
         </div>
-      </div>
-      <div className="casting-slider">
-        <h2>Distribution des rôles</h2>
-        <div className="casting-list">
-          {tvShow.credits?.cast.slice(0, 10).map((cast) => (
-            <PersonCard
-              key={cast.id}
-              person={cast}
-              personName={cast.name}
-              character={cast.character}
-            />
-          ))}
-        </div>
-      </div>
 
-     <div className="seasons-section">
-  <h3>Saisons</h3>
-  <div className="seasons-list">
-    {tvShow.seasons.map((season) => (
-      <div
-        key={season.id}
-        className="season-card"
-        onClick={() => fetchSeasonEpisodes(id, season.season_number)}
-        style={{ cursor: 'pointer' }} // Ajoute un curseur "pointer" pour indiquer que c'est cliquable
-      >
-        <div>
-          <img
-            src={`https://image.tmdb.org/t/p/original/${season.poster_path}`}
-            alt={season.name}
-            className="season-poster"
-          />
-        </div>
-        <div className="season-details">
-          <h3>{season.name}</h3>
-          <ul>
-            <li>{season.episode_count} épisodes</li>
-            <li>{formatDate(season.air_date)}</li>
-          </ul>
-          <div className="season-overview">
-            <p>{season.overview}</p>
+        <div className="casting-slider">
+          <h2>Distribution des rôles</h2>
+          <div className="casting-list">
+            {tvShow.credits?.cast.slice(0, 10).map((cast) => (
+              <PersonCard
+                key={cast.id}
+                person={cast}
+                personName={cast.name}
+                character={cast.character}
+              />
+            ))}
           </div>
         </div>
-      </div>
-    ))}
-  </div>
-</div>
 
-{loadingEpisodes && <Loader />}
+        <div className="seasons-section">
+          <h3>Saisons</h3>
+          <div className="seasons-list">
+            {tvShow.seasons.map((season) => (
+              <div
+                key={season.id}
+                className="season-card"
+                onClick={() => fetchSeasonEpisodes(id, season.season_number)}
+              >
+                <div>
+                  <img
+                    src={`https://image.tmdb.org/t/p/original/${season.poster_path}`}
+                    alt={season.name}
+                    className="season-poster"
+                  />
+                </div>
+                <div className="season-details">
+                  <h3>{season.name}</h3>
+                  <ul>
+                    <li>{season.episode_count} épisodes</li>
+                    <li>{formatDate(season.air_date)}</li>
+                  </ul>
+                  <div className="season-overview">
+                    <p>{season.overview}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {loadingEpisodes && <Loader />}
 
         {selectedSeason && episodes && (
           <div className="episodes-section">
@@ -247,28 +236,28 @@ function TvShowPage() {
           </div>
         )}
 
-
-      {isModalOpen && (
-        <div className="modal-overlay" onClick={closeModal}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <button className="close-modal" onClick={closeModal}>
-              &times;
-            </button>
-            <div className="video-container">
-              <iframe
-                width="100%"
-                height="450"
-                src={`https://www.youtube.com/embed/${tvShowVideo.key}?autoplay=1`}
-                title="Bande-annonce"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
+        {isModalOpen && (
+          <div className="modal-overlay" onClick={closeModal}>
+            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+              <button className="close-modal" onClick={closeModal}>
+                &times;
+              </button>
+              <div className="video-container">
+                <iframe
+                  width="100%"
+                  height="450"
+                  src={`https://www.youtube.com/embed/${tvShowVideo.key}?autoplay=1`}
+                  title="Bande-annonce"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
     </div>
+     </div>
   );
 }
 

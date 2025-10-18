@@ -28,28 +28,32 @@ function PersonPage() {
     };
 
     
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const personResponse = await instanceAxios.get(`/person/${id}`);
-                setPerson(personResponse.data);
-                
-               // Remplace les espaces par des tirets
+  useEffect(() => {
+    const fetchData = async () => {
+        try {
+            const personResponse = await instanceAxios.get(`/person/${id}`);
+            setPerson(personResponse.data);
+
             const formattedName = personResponse.data.name.split(" ").join("-");
+            const knowForResponse = await instanceAxios.get(`/search?q=${formattedName}`);
 
-            const knowForResponse = await instanceAxios.get(`/search?q=${formattedName}`)
-            setKnowFor(knowForResponse.data.results[0].known_for);
-            console.log("Know For Response:", knowForResponse.data.results[0].known_for);
-
-            } catch (error) {
-                console.error("Error fetching person data:", error);
+            // Vérifie si results existe et contient un élément avec known_for
+            if (knowForResponse.data.results && knowForResponse.data.results.length > 0) {
+                const knownForData = knowForResponse.data.results[0].known_for;
+                setKnowFor(Array.isArray(knownForData) ? knownForData : []);
+            } else {
+                setKnowFor([]); // Retourne un tableau vide si pas de données
             }
-        };
-        
 
-        fetchData();
-        
-    }, [id]);
+        } catch (error) {
+            console.error("Error fetching person data:", error);
+            setKnowFor([]); // Retourne un tableau vide en cas d'erreur
+        }
+    };
+
+    fetchData();
+}, [id]);
+
 
     
     
@@ -108,16 +112,20 @@ function PersonPage() {
             </div>
 
             <div className='section-know-for'>
-               <h2>Célèbre pour :</h2>
+                <h2>Célèbre pour :</h2>
                 <div className='know-for-list'>
-                    {knowFor.map((item) => (
-                        <div key={item.id} className='know-for-item'>
-                            <MovieCard key={item.id} movie={item} />
-                        </div>
-                    ))}
+                    {Array.isArray(knowFor) && knowFor.length > 0 ? (
+                        knowFor.map((item, index) => (
+                            <div key={item.id || index} className='know-for-item'>
+                                <MovieCard movie={item} />
+                            </div>
+                        ))
+                    ) : (
+                        <p>Aucune donnée disponible</p>
+                    )}
                 </div>
-
             </div>
+
 
             <div className='separate-section'>
 

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import instanceAxios from "../../utils/axios";
+import Loader from "../../components/loader/loader";
 import MovieCard from "../../components/movieCard/movieCard";
 import SearchBar from "../../components/searchbar/searchbar";
 
@@ -18,6 +19,10 @@ function TrendingMovieWeek() {
 
         fetchTrendingMovies();
     }, []);
+
+    if (!trendingMovies) {
+        return <Loader />;
+    }
 
     return (
         <div>

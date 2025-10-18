@@ -4,7 +4,10 @@
   justify-content: center;
   flex-direction: column;
   height: 90vh;
+  gap: 2rem;
 }
+
+
 
 .loader-circle {
   border: 8px solid  rgba(42, 123, 155, 1);
@@ -29,3 +32,4 @@
     transform: rotate(360deg);
   }
 }
+

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import instanceAxios from "../../utils/axios";
+import Loader from "../../components/loader/loader";
 import { Link } from 'react-router-dom';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import { FaRegPlayCircle } from "react-icons/fa";
@@ -36,7 +37,7 @@ function TvShowPage() {
   const closeModal = () => setIsModalOpen(false);
 
   if (!tvShow || !tvShowVideo) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   const formattedRating = tvShow.vote_average.toFixed(1) * 10;

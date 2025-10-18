@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import instanceAxios from "../../utils/axios";
 import { useParams } from "react-router-dom";
 import { Link } from 'react-router-dom';
+import Loader from "../../components/loader/loader";
 import MovieCard from "../../components/movieCard/movieCard";
 import GalleryImages from '../../components/galleryImages/galleryImages';
 
@@ -59,7 +60,7 @@ function PersonPage() {
     
 
     if (!person) {
-        return <div>Loading...</div>;
+       return <Loader />;
     }
 
 

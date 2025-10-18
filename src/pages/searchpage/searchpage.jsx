@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import instanceAxios from "../../utils/axios";
+import Loader from "../../components/loader/loader";
 import SearchBar from "../../components/searchbar/searchbar";
 import PersonCard from "../../components/personCard/personcard";
 import MovieCard from "../../components/movieCard/movieCard";

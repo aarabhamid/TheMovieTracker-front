@@ -1,14 +1,23 @@
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation, useNavigationType } from "react-router-dom";
 import { useEffect } from "react";
 import Header from "../components/header/header.jsx";
 import Footer from "../components/footer/footer.jsx";
 
 function MainLayout() {
     const { pathname } = useLocation();
+    const navType = useNavigationType();
 
     useEffect(() => {
-        window.scrollTo(0, 0);
-    }, [pathname]); // Déclenché à chaque changement de route
+        if ('scrollRestoration' in window.history) {
+            window.history.scrollRestoration = 'manual';
+        }
+    }, []);
+
+    useEffect(() => {
+        if (navType !== 'POP') {
+            window.scrollTo(0, 0);
+        }
+    }, [pathname, navType]);
 
     return (
         <div>

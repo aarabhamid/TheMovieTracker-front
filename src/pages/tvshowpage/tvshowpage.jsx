@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import instanceAxios from "../../utils/axios";
 import { Link } from 'react-router-dom';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import { FaRegPlayCircle } from "react-icons/fa";
+
 import ReactCountryFlag from "react-country-flag";
 import PersonCard from "../../components/personCard/personcard";
 import 'react-circular-progressbar/dist/styles.css';
@@ -120,7 +122,7 @@ function TvShowPage() {
               </div>
               <p className="score-text">Score <br /> d'évaluation</p>
               <div className="trailer-button">
-                <button onClick={openModal}>Voir la bande-annonce</button>
+                <button onClick={openModal}><span className="trailer-button-play"><FaRegPlayCircle /></span>Voir la bande-annonce</button>
               </div>
             </div>
             <div className="movie-synopsis">

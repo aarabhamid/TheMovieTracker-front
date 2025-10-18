@@ -157,7 +157,7 @@ function MoviePage() {
               key={cast.id}
               person={cast}
               personName={cast.name}
-              character={cast.character} // Passe le nom du personnage
+              character={cast.character} 
             />
           ))}
         </div>

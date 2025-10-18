@@ -242,9 +242,9 @@
 
 .back-link--movie {
   position: absolute;
-  top: 1rem; /* Correspond au padding du conteneur */
+  top: 1rem; 
   left: 2rem;
-  z-index: 10; /* Doit être supérieur à tous les autres z-index dans .movie-backdrop-container */
+  z-index: 10; 
   font-size: 1.2rem;
   cursor: pointer;
 }

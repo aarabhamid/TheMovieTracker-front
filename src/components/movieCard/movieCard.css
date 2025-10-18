@@ -31,8 +31,8 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    bottom: -15px; /* Ajustez la distance du bas */
-    left: 5px; /* Ajustez la distance de la gauche */
+    bottom: -15px; /* Ajuste la distance du bas */
+    left: 5px; /* Ajuste la distance de la gauche */
     font-weight: 300;
     font-size: 12px;
     border: solid 1.5px #2A7B9B;
@@ -55,5 +55,5 @@
     width: 100%;
     height: 1px;
     background-color: gray;
-    margin-top: 1.3rem ; /* Espace au-dessus et en dessous de la ligne */
+    margin-top: 1.3rem; 
 }

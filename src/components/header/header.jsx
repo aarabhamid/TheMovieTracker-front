@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./header.css";
-import logo from "../../assets/TMT-size.PNG"; // Ajuste le chemin selon l'emplacement du fichier
+import logo from "../../assets/TMT-size.PNG"; 
 
 
 function Header() {

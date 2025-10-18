@@ -5,7 +5,7 @@ import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
 function MovieCard({ movie }) {
-    // Formater la note avec un seul chiffre après la virgule, multiplier par 10 pour pourcentage
+    // Formate la note avec un seul chiffre après la virgule, multiplier par 10 pour pourcentage
     const formattedRating = movie.vote_average.toFixed(1) * 10;
     const movieTitle = (movie.title || movie.original_name).toUpperCase();
     const rating = parseFloat(formattedRating);

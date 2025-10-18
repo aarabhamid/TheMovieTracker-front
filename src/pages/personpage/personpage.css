@@ -61,7 +61,7 @@
     margin: 0.25rem;
 }
 
-/* Exemple de styles pour chaque département */
+/* styles pour chaque département */
 .person-department--Acting {
     background-color: var(--color-acting);
     color: white;

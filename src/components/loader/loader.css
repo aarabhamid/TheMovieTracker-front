@@ -1,0 +1,31 @@
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 90vh;
+}
+
+.loader-circle {
+  border: 8px solid  rgba(42, 123, 155, 1);
+  border-top: 8px solid rgba(91, 207, 207, 1);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+.loader-text {
+  margin-top: 12px;
+  color: black;
+  font-size: 16px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

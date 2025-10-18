@@ -7,6 +7,7 @@ import { FaRegPlayCircle } from "react-icons/fa";
 import ReactCountryFlag from "react-country-flag";
 import PersonCard from "../../components/personCard/personcard";
 import GalleryImages from "../../components/galleryImages/galleryImages";
+import Loader from "../../components/loader/loader";
 import 'react-circular-progressbar/dist/styles.css';
 import "./moviepage.css";
 
@@ -36,7 +37,7 @@ function MoviePage() {
   const closeModal = () => setIsModalOpen(false);
 
   if (!movie || !movieVideo) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   const formattedRating = movie.vote_average.toFixed(1) * 10;

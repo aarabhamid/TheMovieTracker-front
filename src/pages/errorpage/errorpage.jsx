@@ -11,9 +11,16 @@ function ErrorPage() {
         </div>
       <h1>404 - Page Not Found</h1>
       <p>Sorry, the page you are looking for does not exist.</p>
-      <Link to="#" onClick={() => window.history.back()} className="back-link">
-             <span>&lt;</span> Retour
-          </Link>
+      <Link
+  onClick={() => {
+    window.history.back();
+    window.scrollTo(0, 0);
+  }}
+  className="back-link--movie back-link"
+>
+  <span>&lt;</span> Retour
+</Link>
+
     </div>
   );
 }

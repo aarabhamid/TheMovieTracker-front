@@ -69,9 +69,16 @@ function PersonPage() {
     return (
         <div >
             <div>
-                <Link to="#" onClick={() => window.history.back()} className="back-link">
-                    ← Retour
-                </Link>
+                <Link
+  onClick={() => {
+    window.history.back();
+    window.scrollTo(0, 0);
+  }}
+  className="back-link--movie back-link"
+>
+  <span>&lt;</span> Retour
+</Link>
+
             </div>
             <div className="person-page">
             

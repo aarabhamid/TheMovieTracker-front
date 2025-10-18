@@ -64,9 +64,16 @@ function TvShowPage() {
     <div className="tv-show-page">
       <div className="movie-backdrop-container">
   <div>
-          <Link to="#" onClick={() => window.history.back()} className=" back-link--movie back-link">
-             <span>&lt;</span> Retour
-          </Link>
+          <Link
+  onClick={() => {
+    window.history.back();
+    window.scrollTo(0, 0);
+  }}
+  className="back-link--movie back-link"
+>
+  <span>&lt;</span> Retour
+</Link>
+
         </div>
 
 

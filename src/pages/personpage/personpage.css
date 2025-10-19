@@ -77,16 +77,19 @@
     color: white;
 }
 
-.person-movies {
+.person-movies,
+.person-movies-crew {
     margin-top: 2rem;
     padding: 1rem 2rem;
 }
-.person-movies h2 {
+.person-movies h2,
+.person-movies-crew h2 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
 }
 
-.person-movies-list {
+.person-movies-list,
+.person-movies-crew-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -147,3 +150,15 @@
     flex-wrap: wrap;
     gap: 1rem;
 }
+
+.movie-crew-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.movie-crew-info p {
+    font-size: 0.7rem;
+    color: #555;
+}
+

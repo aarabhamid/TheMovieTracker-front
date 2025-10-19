@@ -55,33 +55,27 @@ function PersonPage() {
     fetchData();
 }, [id]);
 
-
-    
-    
-
     if (!person) {
        return <Loader />;
     }
 
-
-
-
     return (
         <div >
-            <div>
-                <Link
-  onClick={() => {
-    window.history.back();
-    window.scrollTo(0, 0);
-  }}
-  className=" back-link"
->
-  <span>&lt;</span> Retour
-</Link>
+
+            <div> <Link
+                    onClick={() => {
+                        window.history.back();
+                        window.scrollTo(0, 0);
+                    }}
+                    className=" back-link"
+                >
+                    <span>&lt;</span> Retour
+                </Link>
 
             </div>
+
             <div className="person-page">
-            
+
 
                 <div className='person-profile_path'>
                     <img
@@ -108,10 +102,6 @@ function PersonPage() {
                     </div>
 
                 </div>
-
-
-
-
             </div>
 
             <div className='separate-section'>
@@ -152,6 +142,37 @@ function PersonPage() {
                         <MovieCard key={movie.id} movie={movie} />
                     ))}
                 </div>
+            </div>
+
+            <div className="person-movies-crew">
+
+                <h2>Membres de l'équipe de :</h2>
+
+                <div className='person-movies-crew-list'>
+                    {person.credits.crew.map((movie) => (
+                        <div key={movie.id} movie={movie} className="movie-card">
+                            <Link to={movie.title ? `/movies/${movie.id}` : `/tv/${movie.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                                <div style={{ position: 'relative', width: 100, height: 150 }}>
+                                    <img
+                                        src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+                                        alt={movie.title || movie.original_name}
+                                        className="movie-poster"
+                                        style={{ width: '90%', height: '100%', display: 'block', borderRadius: '10px', justifyContent: 'center', padding: '2px' }}
+                                    />
+
+                                </div>
+                                <span className="separate-line"></span>
+
+                                <div className='movie-crew-info'>
+                                    <h3 className="movie-title">{movie.title}</h3>
+                                    <p>{movie.department}</p>
+                                    <p>{movie.job}</p>
+                                </div>
+                            </Link>
+                        </div>
+                    ))}
+                </div>
+
             </div>
 
         </div>

@@ -127,12 +127,17 @@
   align-items: center;
   border-radius: 8px;
   overflow: hidden;
+  border: solid 1px #ccc;
+  padding:  0.5rem;
+  border-radius: 10px;
+  box-shadow: #35333333 0px 4px 8px;
 }
 
 .episode-poster {
   width: 100px;
   height: auto;
   object-fit: cover;
+  border-radius: 10px;
 }
 
 .episode-details {

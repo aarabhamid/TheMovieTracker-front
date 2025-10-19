@@ -5,7 +5,6 @@ import Loader from "../../components/loader/loader";
 import { Link } from 'react-router-dom';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import { FaRegPlayCircle } from "react-icons/fa";
-
 import ReactCountryFlag from "react-country-flag";
 import PersonCard from "../../components/personCard/personcard";
 import 'react-circular-progressbar/dist/styles.css';
@@ -40,7 +39,7 @@ function TvShowPage() {
   setLoadingEpisodes(true);
   try {
     const response = await instanceAxios.get(`/tv/${tvId}/season/${seasonNumber}`);
-    console.log("Réponse de l'API :", response.data); // Ajoute cette ligne
+  
     setEpisodes(response.data.episodes);
     setSelectedSeason(seasonNumber);
   } catch (error) {
@@ -189,13 +188,14 @@ function TvShowPage() {
 
      <div className="seasons-section">
   <h3>Saisons</h3>
-  <div className="seasons-list">
-    {tvShow.seasons.map((season) => (
+
+ <div className="seasons-list">
+  {tvShow.seasons.map((season) => (
+    <div key={season.id} className="season-container">
       <div
-        key={season.id}
         className="season-card"
         onClick={() => fetchSeasonEpisodes(id, season.season_number)}
-        style={{ cursor: 'pointer' }} // Ajoute un curseur "pointer" pour indiquer que c'est cliquable
+        style={{ cursor: 'pointer' }}
       >
         <div>
           <img
@@ -215,38 +215,37 @@ function TvShowPage() {
           </div>
         </div>
       </div>
-    ))}
-  </div>
+      
+      {loadingEpisodes && selectedSeason === season.season_number && <Loader />}
+      {selectedSeason === season.season_number && episodes && (
+        <div className="episodes-section">
+          <h3>Épisodes de la saison {selectedSeason}</h3>
+          <div className="episodes-list">
+            {episodes.map((episode) => (
+              <div key={episode.id} className="episode-card">
+                <div className="episode-poster-container">
+                  {episode.still_path && (
+                    <img
+                      src={`https://image.tmdb.org/t/p/w300/${episode.still_path}`}
+                      alt={episode.name}
+                      className="episode-poster"
+                    />
+                  )}
+                </div>
+                <div className="episode-details">
+                  <h4>Épisode {episode.episode_number}: {episode.name}</h4>
+                  <p className="episode-overview">{episode.overview}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  ))}
 </div>
 
-{loadingEpisodes && <Loader />}
-
-        {selectedSeason && episodes && (
-          <div className="episodes-section">
-            <h3>Épisodes de la saison {selectedSeason}</h3>
-            <div className="episodes-list">
-              {episodes.map((episode) => (
-                <div key={episode.id} className="episode-card">
-                  <div className="episode-poster-container">
-                    {episode.still_path && (
-                      <img
-                        src={`https://image.tmdb.org/t/p/w300/${episode.still_path}`}
-                        alt={episode.name}
-                        className="episode-poster"
-                      />
-                    )}
-                  </div>
-                  <div className="episode-details">
-                    <h4>Épisode {episode.episode_number}: {episode.name}</h4>
-                    <p>{formatDate(episode.air_date)}</p>
-                    <p className="episode-overview">{episode.overview}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
+</div>
 
       {isModalOpen && (
         <div className="modal-overlay" onClick={closeModal}>

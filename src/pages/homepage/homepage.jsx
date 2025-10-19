@@ -1,6 +1,6 @@
 import "./homepage.css";
 import SearchBar from "../../components/searchbar/searchbar";
-import banner from "../../assets/banner-modified.JPG"; 
+import banner from "../../assets/banner-mod.JPG"; 
 
 function HomepageComponent() {
 

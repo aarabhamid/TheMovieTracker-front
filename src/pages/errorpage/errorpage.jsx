@@ -6,6 +6,19 @@ function ErrorPage() {
   return (
     <div className="error-page">
 
+      <div>
+          <Link
+  onClick={() => {
+    window.history.back();
+    window.scrollTo(0, 0);
+  }}
+  className="back-link"
+>
+  <span>&lt;</span> Retour
+</Link>
+
+        </div>
+
         <div className="error-image">
             <img src={image} alt="image erreur 404" />
         </div>

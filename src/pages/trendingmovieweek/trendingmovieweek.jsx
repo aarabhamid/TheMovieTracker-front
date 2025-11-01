@@ -26,17 +26,20 @@ function TrendingMovieWeek() {
 
     return (
         <div>
-            <SearchBar />
-        
-        <div className="trending-movie-week">
-            <h2>Tendances de la semaine</h2>
-            <div className="movie-list">
-                {trendingMovies.map((movie) => (
-                    <MovieCard key={movie.id} movie={movie} />
-                ))}
+
+            <div className="search-bar-container">
+                <SearchBar />
+            </div>
+
+            <div className="trending-movie-week">
+                <h2>Tendances de la semaine</h2>
+                <div className="movie-list">
+                    {trendingMovies.map((movie) => (
+                        <MovieCard key={movie.id} movie={movie} />
+                    ))}
+                </div>
             </div>
         </div>
-         </div>
     );
 }
 

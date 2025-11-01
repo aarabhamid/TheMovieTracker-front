@@ -23,3 +23,18 @@
     color: white;
     text-decoration: none;
 }
+
+@media screen and (max-width: 768px) {
+    .search-bar-container {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    
+    .search-bar {
+        display: flex;
+        align-content: center;
+        width: 80%;
+        margin: 1rem;
+    }
+}

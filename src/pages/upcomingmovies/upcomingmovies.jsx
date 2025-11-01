@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import instanceAxios from "../../utils/axios";
 import MovieCard from "../../components/movieCard/movieCard";
 import SearchBar from "../../components/searchbar/searchbar";
-import "./upcomingmovies.css";  
+import "./upcomingmovies.css";
 
 function UpcomingMovies() {
     const [upcomingMovies, setUpcomingMovies] = useState([]);
@@ -21,13 +21,21 @@ function UpcomingMovies() {
     }, []);
 
     return (
-        <div className="upcoming-movies">
-            <SearchBar />
-            <h1>Films à venir</h1>
-            <div className="movie-list">
-                {upcomingMovies.map((movie) => (
-                    <MovieCard key={movie.id} movie={movie} />
-                ))}
+
+        <div>
+            
+            <div className="search-bar-container">
+                <SearchBar />
+            </div>
+
+            <div className="upcoming-movies">
+
+                <h1>Films à venir</h1>
+                <div className="movie-list">
+                    {upcomingMovies.map((movie) => (
+                        <MovieCard key={movie.id} movie={movie} />
+                    ))}
+                </div>
             </div>
         </div>
     );

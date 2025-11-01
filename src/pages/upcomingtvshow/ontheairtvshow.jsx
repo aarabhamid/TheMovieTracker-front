@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import instanceAxios from "../../utils/axios";
 import MovieCard from "../../components/movieCard/movieCard";
 import SearchBar from "../../components/searchbar/searchbar";
-import "./ontheairtvshow.css";  
+import "./ontheairtvshow.css";
 
 function OnTheAirTVShows() {
     const [onTheAirTVShows, setOnTheAirTVShows] = useState([]);
@@ -21,13 +21,19 @@ function OnTheAirTVShows() {
     }, []);
 
     return (
-        <div className="on-the-air-tv-shows">
-            <SearchBar />
-            <h1>En cours de diffusion</h1>
-            <div className="movie-list">
-                {onTheAirTVShows.map((show) => (
-                    <MovieCard key={show.id} movie={show} />
-                ))}
+        <div>
+            <div className="search-bar-container">
+                <SearchBar />
+            </div>
+
+            <div className="on-the-air-tv-shows">
+
+                <h1>En cours de diffusion</h1>
+                <div className="movie-list">
+                    {onTheAirTVShows.map((show) => (
+                        <MovieCard key={show.id} movie={show} />
+                    ))}
+                </div>
             </div>
         </div>
     );

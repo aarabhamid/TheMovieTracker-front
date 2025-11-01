@@ -21,17 +21,21 @@ function TrendingPersonWeek() {
 
     return (
         <div>
-            <SearchBar />
 
-        <div className="trending-person-week">
-            <h2>Artistes tendances de la semaine</h2>
-            <div className="movie-list">
-                {trendingPeople.map((person) => (
-                    <PersonCard key={person.id} person={person} />
-                ))}
+
+            <div className="search-bar-container">
+                <SearchBar />
+            </div>
+
+            <div className="trending-person-week">
+                <h2>Artistes tendances de la semaine</h2>
+                <div className="movie-list">
+                    {trendingPeople.map((person) => (
+                        <PersonCard key={person.id} person={person} />
+                    ))}
+                </div>
             </div>
         </div>
-         </div>
     );
 }
 

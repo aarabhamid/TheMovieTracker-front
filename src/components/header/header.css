@@ -165,6 +165,7 @@
         display: none;
         position: static;
         width: 100%;
+        transform: translateX(-0%);
         background: transparent;
         border: none;
         box-shadow: none;
@@ -179,6 +180,8 @@
         color: white;
         font-size: 18px;
         padding: 0.5rem 0;
+        text-align: center;
+        
     }
 
     .dropdown li a {

@@ -21,17 +21,19 @@ function TrendingTvWeek() {
 
     return (
         <div>
-            <SearchBar />
+            <div className="search-bar-container">
+                <SearchBar />
+            </div>
 
-        <div className="trending-tv-week">
-            <h2>Tendances de la semaine</h2>
-            <div className="movie-list">
-                {trendingTvShows.map((show) => (
-                    <MovieCard key={show.id} movie={show} />
-                ))}
+            <div className="trending-tv-week">
+                <h2>Tendances de la semaine</h2>
+                <div className="movie-list">
+                    {trendingTvShows.map((show) => (
+                        <MovieCard key={show.id} movie={show} />
+                    ))}
+                </div>
             </div>
         </div>
-         </div>
     );
 }
 

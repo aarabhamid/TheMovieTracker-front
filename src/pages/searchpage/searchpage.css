@@ -9,3 +9,14 @@
 .search-page h1 {
     text-align: center;
 }   
+
+@media screen and (max-width: 768px) {
+    .search-page h1 {
+        font-size: 1.5rem;
+    }
+    .results-lists-container {
+        justify-content: center;
+        gap: 2rem;
+        padding: 0;
+    }
+}

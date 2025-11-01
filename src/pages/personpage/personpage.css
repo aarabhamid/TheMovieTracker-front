@@ -162,3 +162,16 @@
     color: #555;
 }
 
+@media screen and (max-width: 768px) {
+    .person-page {
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+    }
+    .person-movies-list,
+    .person-movies-crew-list {
+        justify-content: center;
+        padding: 0;
+    }
+}
+

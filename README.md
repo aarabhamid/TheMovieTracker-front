@@ -19,6 +19,9 @@
 ## Live Demo
 - https://tmdb-front-indol.vercel.app/
 
+## Repo BACKEND
+https://github.com/aarabhamid/Tmdb-Back  
+
 
 
 
